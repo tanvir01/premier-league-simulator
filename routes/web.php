@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\MainController;
+use App\Http\Controllers\SimulatorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [MainController::class, 'index']);
+Route::post('/simulate-week/{week}', [SimulatorController::class, 'simulateWeek']);
+Route::post('/simulate-all', [SimulatorController::class, 'simulateAll']);
+Route::post('/simulate-reset', [SimulatorController::class, 'simulateReset']);

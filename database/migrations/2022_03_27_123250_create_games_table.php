@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('home_team_id');
             $table->unsignedBigInteger('away_team_id');
-            $table->integer('week_id')->nullable()->constrained();
+            $table->foreignId('week_id')->constrained();
             $table->integer('home_team_goal')->default(0);
             $table->integer('away_team_goal')->default(0);
             $table->boolean('status')->default(0)->comment('0 for not played and 1 for played');

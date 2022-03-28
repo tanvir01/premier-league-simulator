@@ -10,4 +10,9 @@ class Week extends Model
     use HasFactory;
 
     public $timestamps = false;
+
+    public function games()
+    {
+        return $this->hasMany(Game::class);
+    }
 }
