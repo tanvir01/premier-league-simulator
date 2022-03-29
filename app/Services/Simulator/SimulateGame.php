@@ -25,6 +25,10 @@ class SimulateGame
 
     private function simulateGame(Game $game)
     {
+        if($game->status === 1) {
+            return;
+        }
+
         $game->home_team_goal = SimulateTeamScore::generateTeamScore($game, $game->homeTeam);
         $game->away_team_goal = SimulateTeamScore::generateTeamScore($game, $game->awayTeam);
         $game->status = 1;

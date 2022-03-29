@@ -8,27 +8,24 @@ use App\Models\Week;
 
 class MainController extends Controller
 {
-    public function index()
+    public function index(Week $week = null)
     {
-        $week = Week::first();
+        if(!$week) {
+            $week = Week::first();
+        }
         $games = $week->games;
+        $isLastWeek = $this->checkIfLastWeek($week);
 
         return view('welcome', [
             'week' => $week,
             'games' => $games,
+            'isLastWeek' => $isLastWeek,
             'standings' => Standing::orderBy('points', 'desc')->orderBy('won', 'desc')->orderBy('goal_difference', 'desc')->get()
         ]);
     }
 
-    public function showNextWeek()
+    private function checkIfLastWeek(Week $week)
     {
-        $week = Game::where('status',0)->orderby('week_id', 'asc')->first()->week;
-        $games = $week->games;
-
-        return view('welcome', [
-            'week' => $week,
-            'games' => $games,
-            'standings' => Standing::orderBy('points', 'desc')->orderBy('won', 'desc')->orderBy('goal_difference', 'desc')->get()
-        ]);
+        return $week->is(Week::orderBy('id', 'desc')->first());
     }
 }
