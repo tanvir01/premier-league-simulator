@@ -20,14 +20,14 @@ class SimulatorController extends Controller
     {
         $this->simulateGame->simulateGamesForWeek($week);
 
-        return redirect('/' . $week->id);
+        return redirect('/show-result');
     }
 
     public function simulateAll()
     {
         $this->simulateGame->simulateGamesForAllWeeks();
 
-        return redirect('/' . Week::orderBy('id', 'desc')->first()->id);
+        return redirect('/show-result');
     }
 
     public function simulateReset()

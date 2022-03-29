@@ -113,7 +113,7 @@
                                     </form>
                                 @else
                                     @if(!$isLastWeek)
-                                        <a href="/{{$week->id+1}}" class="btn btn-primary">Next Week</a>
+                                        <a href="/" class="btn btn-primary">Next Week</a>
                                     @endif
                                 @endif
                             </td>

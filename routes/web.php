@@ -15,7 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/{week?}', [MainController::class, 'index']);
+Route::get('/', [MainController::class, 'index']);
+Route::get('/show-result', [MainController::class, 'showResult']);
 Route::post('/simulate-week/{week}', [SimulatorController::class, 'simulateWeek']);
 Route::post('/simulate-all', [SimulatorController::class, 'simulateAll']);
 Route::post('/simulate-reset', [SimulatorController::class, 'simulateReset']);
