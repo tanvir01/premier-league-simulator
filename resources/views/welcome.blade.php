@@ -110,9 +110,7 @@
                                         <input type="submit" value="Simulate Week" class="btn btn-primary simulate-button">
                                     </form>
                                 @else
-                                    <button class="btn btn-primary next-week">
-                                        Go To Next Week
-                                    </button>
+                                    <a href="/next-week" class="btn btn-primary">Next Week</a>
                                 @endif
                             </td>
                         </tr>
