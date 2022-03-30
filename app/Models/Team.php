@@ -9,6 +9,11 @@ class Team extends Model
 {
     use HasFactory;
 
+    public function standing()
+    {
+        return $this->hasOne(Standing::class);
+    }
+
     public function prediction()
     {
         return $this->hasOne(Prediction::class);

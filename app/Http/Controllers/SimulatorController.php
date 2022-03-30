@@ -7,6 +7,7 @@ use App\Models\Prediction;
 use App\Models\Standing;
 use App\Models\Week;
 use App\Services\Simulator\SimulateGame;
+use App\Services\Simulator\SimulateReset;
 
 class SimulatorController extends Controller
 {
@@ -33,22 +34,7 @@ class SimulatorController extends Controller
 
     public function simulateReset()
     {
-        $games = Game::all();
-        $standings = Standing::all();
-        $predictions = Prediction::all();
-
-        foreach ($games as $game) {
-            $game->resetGame();
-            $game->save();
-        }
-        foreach ($standings as $standing) {
-            $standing->resetStanding();
-            $standing->save();
-        }
-        foreach ($predictions as $prediction) {
-            $prediction->resetPrediction();
-            $prediction->save();
-        }
+        SimulateReset::resetAll();
 
         return redirect('/');
     }
