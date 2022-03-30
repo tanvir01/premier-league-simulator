@@ -4,6 +4,7 @@ namespace App\Services\Simulator;
 
 use App\Models\Game;
 use App\Models\Week;
+use App\Services\Predictor\PredictWinner;
 use Illuminate\Database\Eloquent\Collection;
 
 class SimulateGame
@@ -21,6 +22,8 @@ class SimulateGame
         foreach ($week->games as $game) {
             $this->simulateGame($game);
         }
+
+        PredictWinner::updateTeamPredictions();
     }
 
     private function simulateGame(Game $game)

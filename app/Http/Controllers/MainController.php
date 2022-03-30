@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Game;
 use App\Models\Standing;
+use App\Models\Team;
 use App\Models\Week;
 
 class MainController extends Controller

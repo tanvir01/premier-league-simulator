@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Game;
+use App\Models\Prediction;
 use App\Models\Standing;
 use App\Models\Week;
 use App\Services\Simulator\SimulateGame;
@@ -34,6 +35,7 @@ class SimulatorController extends Controller
     {
         $games = Game::all();
         $standings = Standing::all();
+        $predictions = Prediction::all();
 
         foreach ($games as $game) {
             $game->resetGame();
@@ -42,6 +44,10 @@ class SimulatorController extends Controller
         foreach ($standings as $standing) {
             $standing->resetStanding();
             $standing->save();
+        }
+        foreach ($predictions as $prediction) {
+            $prediction->resetPrediction();
+            $prediction->save();
         }
 
         return redirect('/');

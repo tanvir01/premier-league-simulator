@@ -26,8 +26,6 @@ class FixtureDraw
 
     private function generateFixtureForWeek(Week $week)
     {
-        //TODO: check for exception such as team count is not 4
-
         if($this->isSameFixtureExisting()){
             $this->teams = $this->teams->shuffle();
 
