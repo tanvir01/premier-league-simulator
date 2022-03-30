@@ -17,5 +17,6 @@ This is a premier league simulator app, built in Laravel 9.
 5. Run: `sail up`
 6. Create `premier_league_db` and `premier_league_db_test` (for test) databases ( Host: 127.0.0.1, Username: root )
 7. Run: `sail artisan migrate --seed` and `sail artisan migrate --seed --env=testing` (for test)
-8. To checkout the app: visit `http://0.0.0.0:80`
-9. To run tests: `sail artisan test`
+8. Run: `sail artisan key:generate`
+9. To checkout the app: visit `http://0.0.0.0:80`
+10. To run tests: `sail artisan test`
