@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Game;
+use App\Models\Prediction;
 use App\Models\Standing;
 use App\Models\Team;
 use App\Models\Week;
@@ -17,7 +18,8 @@ class MainController extends Controller
         return view('welcome', [
             'week' => $week,
             'games' => $games,
-            'standings' => $this->getLatestStandings()
+            'standings' => $this->getLatestStandings(),
+            'predictions' => $this->getPredictions()
         ]);
     }
 
@@ -29,13 +31,19 @@ class MainController extends Controller
         return view('welcome', [
             'week' => $week,
             'games' => $games,
-            'standings' => $this->getLatestStandings()
+            'standings' => $this->getLatestStandings(),
+            'predictions' => $this->getPredictions()
         ]);
     }
 
     private function getLatestStandings()
     {
         return (Standing::orderBy('points', 'desc')->orderBy('won', 'desc')->orderBy('goal_difference', 'desc')->get());
+    }
+
+    private function getPredictions()
+    {
+        return (Prediction::orderBy('percentage', 'desc')->get());
     }
 
     private function determineWeek(int $gameStatus, string $weekOrder, string $defaultWeekOrder): Week

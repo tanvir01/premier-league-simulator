@@ -46,6 +46,7 @@
                         <thead>
                         <th>Leage Table</th>
                         <th>Match</th>
+                        @if((!$week->isLastWeek()) || ($games->first()->status == 0))<th>Predictions Of Championship</th>@endif
                         </thead>
                         <tbody>
                         <tr>
@@ -95,6 +96,21 @@
                                     </tbody>
                                 </table>
                             </td>
+                            @if((!$week->isLastWeek()) || ($games->first()->status == 0))
+                            <td>
+                                <table id="predictions-table" class="table table-bordred table-striped">
+                                    <tbody>
+                                    @foreach($predictions as $prediction)
+                                        <tr style="text-align: left">
+                                            <td>
+                                                {{$prediction->team->name}} - {{$prediction->percentage}} %
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </td>
+                            @endif
                         </tr>
                         <tr>
                             <td style="text-align: left">
