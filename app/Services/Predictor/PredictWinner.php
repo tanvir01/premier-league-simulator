@@ -18,8 +18,6 @@ class PredictWinner
             $teamPredictions[$teamId] = round(($teamPoints / $totalCurrentStandingPoints) * 100);
         }
 
-        // TODO: check total percentage calculated for all teams adds to 100, adjust if necessary
-
         $predictions = Prediction::all();
         foreach ($predictions as $prediction){
             $prediction->percentage = $teamPredictions[$prediction->team_id];
