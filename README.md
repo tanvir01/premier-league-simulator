@@ -20,3 +20,6 @@ This is a premier league simulator app, built in Laravel 9.
 8. Run: `sail artisan key:generate`
 9. To checkout the app: visit `http://0.0.0.0:80`
 10. To run tests: `sail artisan test`
+
+# Preview
+![image](https://user-images.githubusercontent.com/15964741/160781654-f7a27a5e-22dc-4d11-a92b-5bfafd545c5f.png)
