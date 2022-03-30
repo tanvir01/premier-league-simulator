@@ -98,7 +98,7 @@
                         </tr>
                         <tr>
                             <td style="text-align: left">
-                                @if((!$isLastWeek) || ($games->first()->status == 0))
+                                @if((!$week->isLastWeek()) || ($games->first()->status == 0))
                                     <form method="POST" action="/simulate-all">
                                         @csrf
                                         <input type="submit" value="Play All" class="btn btn-primary play-all-button">
@@ -112,7 +112,7 @@
                                         <input type="submit" value="Simulate Week" class="btn btn-primary simulate-button">
                                     </form>
                                 @else
-                                    @if(!$isLastWeek)
+                                    @if(!$week->isLastWeek())
                                         <a href="/" class="btn btn-primary">Next Week</a>
                                     @endif
                                 @endif

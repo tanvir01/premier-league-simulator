@@ -10,52 +10,40 @@ class MainController extends Controller
 {
     public function index()
     {
-        $week = $this->determineLastUnplayedWeek();
+        $week = $this->determineWeek(0, 'asc', 'desc'); // unplayed or last week
         $games = $week->games;
 
         return view('welcome', [
             'week' => $week,
             'games' => $games,
-            'isLastWeek' => $this->checkIfLastWeek($week),
-            'standings' => $this->getLastStandings()
+            'standings' => $this->getLatestStandings()
         ]);
     }
 
     public function showResult()
     {
-        $week = $this->determineLastPlayedWeek();
+        $week = $this->determineWeek(1, 'desc', 'asc'); // played or first week
         $games = $week->games;
 
         return view('welcome', [
             'week' => $week,
             'games' => $games,
-            'isLastWeek' => $this->checkIfLastWeek($week),
-            'standings' => $this->getLastStandings()
+            'standings' => $this->getLatestStandings()
         ]);
     }
 
-    private function determineLastUnplayedWeek(): Week
-    {
-        $gameForNextUnplayedWeek = Game::where('status', 0)->orderBy('week_id', 'asc')->first();
-        if($gameForNextUnplayedWeek) {
-            return $gameForNextUnplayedWeek->week;
-        }
-
-        return (Week::orderBy('id', 'desc')->first());
-    }
-
-    private function checkIfLastWeek(Week $week): bool
-    {
-        return $week->is(Week::orderBy('id', 'desc')->first());
-    }
-
-    private function getLastStandings()
+    private function getLatestStandings()
     {
         return (Standing::orderBy('points', 'desc')->orderBy('won', 'desc')->orderBy('goal_difference', 'desc')->get());
     }
 
-    private function determineLastPlayedWeek()
+    private function determineWeek(int $gameStatus, string $weekOrder, string $defaultWeekOrder): Week
     {
-        return Game::where('status', 1)->orderBy('week_id', 'desc')->first()->week;
+        $game = Game::where('status', $gameStatus)->orderBy('week_id', $weekOrder)->first();
+        if($game) {
+            return $game->week;
+        }
+
+        return (Week::orderBy('id', $defaultWeekOrder)->first());
     }
 }

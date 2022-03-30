@@ -15,4 +15,9 @@ class Week extends Model
     {
         return $this->hasMany(Game::class);
     }
+
+    public function isLastWeek()
+    {
+        return $this->is(Week::orderBy('id', 'desc')->first());
+    }
 }
